@@ -1,0 +1,38 @@
+services:
+  db:
+    build: ./db
+    container_name: wallet_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+  app:
+    build: ./app
+    container_name: wallet_api
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: wallet_api_homolog
+      DB_PASSWORD: api123
+      DB_NAME: wallet_homolog
+
+      TAXA_SAQUE_PERCENTUAL: 0.01
+      TAXA_CONVERSAO_PERCENTUAL: 0.02
+      TAXA_TRANSFERENCIA_PERCENTUAL: 0.01
+
+      PRIVATE_KEY_SIZE: 32
+      PUBLIC_KEY_SIZE: 16
+
+      ROOT_USER: root
+      ROOT_PASSWORD: root
+    ports:
+      - "8000:8000"
+    command: ["uv", "run", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    restart: always
+
+volumes:
+  db_data:
