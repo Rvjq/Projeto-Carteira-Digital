@@ -7,6 +7,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     restart: always
+    image: rvjq/projeto-carteira-digital-db:latest
 
   app:
     build: ./app
@@ -33,6 +34,7 @@ services:
       - "8000:8000"
     command: ["uv", "run", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
     restart: always
+    image: rvjq/projeto-carteira-digital-app:latest
 
 volumes:
   db_data:
