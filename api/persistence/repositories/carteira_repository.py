@@ -24,7 +24,6 @@ class CarteiraRepository:
         chave_privada = secrets.token_hex(private_key_size)      # 32 bytes -> 64 hex chars (configurável depois)
         endereco = secrets.token_hex(public_key_size)           # "chave pública" simplificada
         hash_privada = hashlib.sha256(chave_privada.encode()).hexdigest()
-
         with get_connection() as conn:
             # 2) INSERT
             conn.execute(
@@ -47,7 +46,6 @@ class CarteiraRepository:
                 """),
                 {"endereco": endereco},
             ).mappings().first()
-
         carteira = dict(row)
         carteira["chave_privada"] = chave_privada
         return carteira
@@ -107,7 +105,7 @@ class CarteiraRepository:
 
         return dict(row) if row else None
     
-    def carteira_auth(self, endereco_carteira: str, hash_chave_privada: str) -> bool:
+    def carteira_auth(self, endereco_carteira: str, chave_privada: str) -> bool:
         with get_connection() as conn:
             hash = conn.execute(
                 text("""
@@ -118,6 +116,6 @@ class CarteiraRepository:
                 {"endereco": endereco_carteira},
             ).mappings().first() 
                
-        if hash["hash_chave_privada"] == hash_chave_privada:
+        if hash["hash_chave_privada"] == hashlib.sha256(chave_privada.encode()).hexdigest():
             return True
         return False
