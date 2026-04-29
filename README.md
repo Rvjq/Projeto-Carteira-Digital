@@ -13,6 +13,7 @@ Ferramentas usadas:
 - **SQLAlchemy (Core, sem ORM)**
 - **SQL puro para DDL/DML**
 - Integração com API pública da **Coinbase** para conversão de moedas
+- **Docker**
 
 A carteira permite:
 
@@ -22,6 +23,7 @@ A carteira permite:
 - Fazer **saques** (com taxa e validação da chave privada)
 - Fazer **conversão entre moedas** (usando cotação da Coinbase)
 - Fazer **transferência entre carteiras**
+
 Este documento descreve o passo a passo para instalar, configurar e executar o projeto Wallet API utilizando MySQL, FastAPI e UV.
 
 ## 🚀 Executando a aplicação com Docker Compose
