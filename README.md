@@ -1,8 +1,10 @@
 # 📘 Wallet API – Guia de Instalação e Execução
 Neste projeto foi o desenvolvido o mockup de uma API de Carteira Digital para disciplina Banco de Dados
 seguindo os seguintes requisitos traçados pelo professor (https://drive.google.com/file/d/1bMj44ZDyxZ14uF3M17RNApwbZPZME0AW/view?usp=sharing).
+
 Apos a api ter sido desenvolvida conforme as especificações, ela é o banco de dados foram conteinerizados
-em forma de docker-compose.yaml como foi pedido pelo professor da disciplina Infraestrutura de software.
+em forma de docker-compose.yaml, automatizando a configuração de ambiente e execução do programa, como foi
+pedido pelo professor da disciplina Infraestrutura de software.
 
 Ferramentas usadas:
 
